@@ -198,7 +198,7 @@ PROJECTS = [
     },
 ]
 
-st.set_page_config(page_title=PAGE_TITLE, page_icon=PAGE_ICON)
+st.set_page_config(page_title=PAGE_TITLE, page_icon=PAGE_ICON, layout="wide")
 
 # Load CSS and Assets
 with open(main_css) as f:
@@ -216,7 +216,6 @@ social_icons = {
     "GitHub": "💻",
 }
 
-st.markdown("<p style='text-align: center; color: #767676; font-style: italic; font-size: .8 rem;'>Better viewed in 'Wide Mode' (Settings > Appearance > Wide Mode)</p>", unsafe_allow_html=True)
 
 # --- HERO SECTION ---
 st.markdown(f"""
