@@ -286,7 +286,7 @@ li {
     margin-bottom: 30px;
     line-height: 1.6;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    flex-grow: 1; /* Fill available space */
+    flex-grow: 1; 
     overflow-y: auto;
     backdrop-filter: blur(10px);
     border: 1px solid rgba(52, 152, 219, 0.3);

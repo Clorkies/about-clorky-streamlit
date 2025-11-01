@@ -200,7 +200,7 @@ PROJECTS = [
 
 st.set_page_config(page_title=PAGE_TITLE, page_icon=PAGE_ICON)
 
-# Load CSS
+# Load CSS and Assets
 with open(main_css) as f:
     st.markdown("<style>{}</style>".format(f.read()), unsafe_allow_html=True)
 with open(resume_file, "rb") as pdf_file:
@@ -216,10 +216,12 @@ social_icons = {
     "GitHub": "💻",
 }
 
+st.markdown("<p style='text-align: center; color: #767676; font-style: italic; font-size: .8 rem;'>Better viewed in 'Wide Mode' (Settings > Appearance > Wide Mode)</p>", unsafe_allow_html=True)
+
 # --- HERO SECTION ---
 st.markdown(f"""
 <h1 style="text-align: center; font-size: 10rem; color: white; 
-           margin-top: 2rem; margin-bottom: 20px; border-bottom: none;">
+           margin-top: -2rem; margin-bottom: 20px; border-bottom: none;">
     {PAGE_TITLE}
 </h1>
 """, unsafe_allow_html=True)
