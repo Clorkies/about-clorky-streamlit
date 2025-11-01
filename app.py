@@ -54,11 +54,12 @@ AUTOBIOGRAPHY = (
     "that enhanced brand recognition and visual storytelling.</p>"
     
     "<h3>Personal Philosophy</h3>"
-    "<p>I believe in the power of combining technical precision with creative vision. My dual background in computer science "
-    "and graphic design gives me a unique perspective on problem-solving and creative expression.</p>"
+
+    "<p>'Carpe Diem' or seizing the moment. This is the motto I bring with me as I live my life, I believe our lives are"
+    "very short and each and every one of us should seize every single second of it.</p>"
     
     "<p>I'm passionate about creating designs that not only look appealing but also communicate effectively and serve a clear purpose. "
-    "This philosophy guides my approach to both academic and professional projects.</p>"
+    "These philosophies guides my approach to both personal, academic and professional projects.</p>"
     
     "<h3>Future Goals</h3>"
     "<p>Looking forward, I aim to leverage my computer science education to explore innovative ways technology can enhance "
@@ -200,6 +201,17 @@ PROJECTS = [
 
 st.set_page_config(page_title=PAGE_TITLE, page_icon=PAGE_ICON, layout="wide")
 
+# Force dark theme with CSS
+dark_mode_css = """
+<style>
+    .stApp {
+        background-color: #0e1117;
+        color: white;
+    }
+</style>
+"""
+st.markdown(dark_mode_css, unsafe_allow_html=True)
+
 # Load CSS and Assets
 with open(main_css) as f:
     st.markdown("<style>{}</style>".format(f.read()), unsafe_allow_html=True)
@@ -252,6 +264,7 @@ st.markdown('</div>', unsafe_allow_html=True)
 # Portfolio section
 st.markdown("<h1 class='centered-header'>Portfolio</h1>", unsafe_allow_html=True)
 st.write("<br>", unsafe_allow_html=True)
+st.divider()
 
 col1, col2 = st.columns([1, 1])
 with col1:
