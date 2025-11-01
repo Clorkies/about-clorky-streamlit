@@ -8,6 +8,10 @@ main_css = curr_dir / "styles" / "main.css"
 resume_file = curr_dir / "assets" / "Resume.pdf"
 profile_pic = curr_dir / "assets" / "Modequillo_Formal_Cropped.png"
 landscape_pic = curr_dir / "assets" / "Modequillo_Formal-Pic_Landscape.png"
+grad_pic = curr_dir / "assets" / "Grad_pic.jpg"
+hackathon_pic = curr_dir / "assets" / "Hackathon_pic.jpg"
+pic_23 = curr_dir / "assets" / "img_23.jpg"
+pic_20 = curr_dir / "assets" / "img_20.jpg"
 
 #--- GENERAL SETTINGS ---
 PAGE_TITLE = "About Clorky"
@@ -21,7 +25,7 @@ EMAIL = "clarkvincent.modequillo@cit.edu"
 PHONE = "+63 999 111 5655"
 
 PROFILE_SUMMARY = (
-    "<p>Creative and detail-oriented professional with experience in graphic design, "
+    "<p>Creative and detail-oriented learner with experience in graphic design, "
     "layout artistry, and creative direction, currently pursuing a BS in Computer Science. "
     "Proven ability to manage end-to-end creative processes, mentor junior staff, and "
     "deliver high-quality publication materials for both academic and freelance clients.</p>"
@@ -29,12 +33,12 @@ PROFILE_SUMMARY = (
 
 AUTOBIOGRAPHY = (
     "<h3>Early Life</h3>"
-    "<p>I was born and raised in Talisay City, Cebu, where I developed an early interest in both art and technology. "
-    "From a young age, I was fascinated by computers and graphic design, spending hours exploring creative software "
+    "<p>I was born and raised in Cogon Pardo, Cebu City, where I developed an early interest in both art and technology. "
+    "From a young age, I was fascinated by computers and graphic design, spending hours exploring creative software, such as MS Paint and Gimp "
     "and learning how technology could enhance artistic expression.</p>"
     
     "<h3>Education Journey</h3>"
-    "<p>My academic journey began at Talisay City Science High School, where I excelled in both scientific and creative subjects. "
+    "<p>My academic journey began at Pardo Elementary School, I then graduated and went to Talisay City Science High School, where I excelled in both scientific and creative subjects. "
     "This dual interest led me to pursue TVL ICT at University of San Jose-Recoletos, where I honed my technical skills "
     "while continuing to develop my design abilities.</p>"
     
@@ -72,7 +76,6 @@ SOCIAL_MEDIA = {
     "GitHub": "https://github.com/Clorkies"
 }
 
-# --- TECHNICAL SKILLS ---
 SKILLS = {
     "Design Software": [
         "Adobe Photoshop",
@@ -99,6 +102,12 @@ SKILLS = {
         "JavaScript", 
         "Version Control",
         "Data Structures and Algorithms"
+    ],
+    "Certifications": [
+        "CodeChum C Certification",
+        "CodeChum Java Certification",
+        "Canva Certification",
+        "TechMahindra Internship Completion Certificate"
     ]
 }
 
@@ -110,7 +119,7 @@ EDUCATION = [
         "details": "Current student."
     },
     {
-        "degree": "TVL ICT",
+        "degree": "Senior High School - TVL ICT",
         "institution": "University of San Jose-Recoletos",
         "years": "2021-2023",
         "details": ""
@@ -166,7 +175,6 @@ EXPERIENCE = [
     },
 ]
 
-# --- PROJECTS / PORTFOLIO ITEMS ---
 PROJECTS = [
     {
         "title": "THE JOSENIAN PREMIER MAGAZINE - VOLUME 7, ISSUE 1 (Creative Director)",
@@ -199,29 +207,8 @@ with open(resume_file, "rb") as pdf_file:
     PDFbyte = pdf_file.read()
 profile_image = Image.open(profile_pic)
 landscape_image = Image.open(landscape_pic)
-
-# --- HERO SECTION ---
-st.markdown('<div class="hero-section">', unsafe_allow_html=True)
-st.markdown('<div class="hero-container">', unsafe_allow_html=True)
-
-# Left side - Image
-st.markdown('<div class="hero-image">', unsafe_allow_html=True)
-st.image(profile_image)
-st.markdown('</div>', unsafe_allow_html=True)
-
-# Right side - Content
-st.markdown('<div class="hero-content">', unsafe_allow_html=True)
-st.write("# Who is Clark (Clorky)?")
-st.write(f"### {JOB_TITLE}")
-
-st.markdown(f"""
-<div class="profile-summary">
-    {PROFILE_SUMMARY}
-    {AUTOBIOGRAPHY}
-</div>
-""", unsafe_allow_html=True)
-
-# Define icons for each platform
+grad_image = Image.open(grad_pic)
+hackathon_image = Image.open(hackathon_pic)
 social_icons = {
     "Facebook": "📘",
     "Instagram": "📸",
@@ -229,51 +216,87 @@ social_icons = {
     "GitHub": "💻",
 }
 
-# Contact info and resume download
-st.write("### Contact Information")
+# --- HERO SECTION ---
+st.markdown(f"""
+<h1 style="text-align: center; font-size: 10rem; color: white; 
+           margin-top: 2rem; margin-bottom: 20px; border-bottom: none;">
+    {PAGE_TITLE}
+</h1>
+""", unsafe_allow_html=True)
+
+col1, col2 = st.columns([1, 2])
+with col1:
+    st.markdown('<div class="bio-image-column">', unsafe_allow_html=True)
+    st.image(profile_image, use_container_width=True)
+    st.image(grad_image, use_container_width=True)
+    st.image(hackathon_image, use_container_width=True)
+    st.markdown('</div>', unsafe_allow_html=True)
+ 
+with col2:
+    st.markdown('<div class="bio-content-column">', unsafe_allow_html=True)
+    st.markdown("""
+    <div class="bio-header">My Journey</div>
+    """, unsafe_allow_html=True)
+    
+    st.markdown(f"""
+    <div class="biography-content">
+        {AUTOBIOGRAPHY}
+    </div>
+    """, unsafe_allow_html=True)
+    st.markdown('</div>', unsafe_allow_html=True)
+
+st.markdown('</div>', unsafe_allow_html=True)
+
+
+# Portfolio section
+st.markdown("<h1 class='centered-header'>Portfolio</h1>", unsafe_allow_html=True)
+st.write("<br>", unsafe_allow_html=True)
+
 col1, col2 = st.columns([1, 1])
 with col1:
+    st.image(landscape_image, width=463)
+    
+with col2:
     st.write("📫", EMAIL)
     st.write("📞", PHONE)
-with col2:
     st.download_button(
         label=" 📄 Download Resume",
         data=PDFbyte,
         file_name=resume_file.name,
         mime="application/octet-stream",
     )
+    cols = st.columns(len(SOCIAL_MEDIA))
+    for index, (platform, link) in enumerate(SOCIAL_MEDIA.items()):
+        icon = social_icons.get(platform, "🌐") 
+        cols[index].markdown(
+            f"""
+            <div class="social-icon-container">
+                <a href="{link}" target="_blank" class="social-icon">
+                    <div class="icon-box">{icon}</div>
+                    <span>{platform}</span>
+                </a>
+            </div>
+            """, 
+            unsafe_allow_html=True
+        )
 
-# Social media links
-cols = st.columns(len(SOCIAL_MEDIA))
-for index, (platform, link) in enumerate(SOCIAL_MEDIA.items()):
-    icon = social_icons.get(platform, "🌐") 
-    cols[index].markdown(
-        f"""
-        <div class="social-icon-container">
-            <a href="{link}" target="_blank" class="social-icon">
-                <div class="icon-box">{icon}</div>
-                <span>{platform}</span>
-            </a>
-        </div>
-        """, 
-        unsafe_allow_html=True
-    )
+st.write("# Profile Summary")
 
-st.markdown('</div>', unsafe_allow_html=True)
-st.markdown('</div>', unsafe_allow_html=True)
-st.markdown('</div>', unsafe_allow_html=True)
+st.markdown(f"""
+<div class="profile-summary">
+    {PROFILE_SUMMARY}
+</div>
+""", unsafe_allow_html=True)
 
 # --- SKILLS ---
 st.write("# Skills")
 tabs = st.tabs(list(SKILLS.keys()))
 for i, (category, skills_list) in enumerate(SKILLS.items()):
     with tabs[i]:
-        # Determine a good number of columns based on skill count
         num_cols = min(3, len(skills_list))
         if num_cols == 0:
             continue
             
-        # Split skills into balanced columns
         skills_per_col = -(-len(skills_list) // num_cols)  # Ceiling division
         cols = st.columns(num_cols)
         
@@ -284,7 +307,6 @@ for i, (category, skills_list) in enumerate(SKILLS.items()):
                 for skill in skills_list[start_idx:end_idx]:
                     st.markdown(f"- **{skill}**")
 
-# --- EDUCATION ---
 st.write("# Education")
 for edu in EDUCATION:
     col1, col2 = st.columns([3, 1])
@@ -312,32 +334,29 @@ for exp in EXPERIENCE:
             st.markdown(f"- {item}")
     st.divider()
 
-# --- PROJECTS ---
 st.write("# Projects")
 
-# Display landscape image in the portfolio section
-col1, col2 = st.columns([1, 2])
-with col1:
-    st.image(landscape_image, width=300)
-with col2:
-    st.write("## Portfolio Highlights")
-    st.write("Below are some selected projects that showcase my design skills and experience in creative direction. Each project represents different aspects of my work, from publication design to event promotions.")
+st.markdown("<h2 class='centered-subheader'>Portfolio Highlights</h2>", unsafe_allow_html=True)
 
-with st.container():
-    for i, project in enumerate(PROJECTS):
-        with st.expander(f"Project {i+1}: {project['title']}"):
-            st.markdown(f"### {project['title']}")
-            st.markdown("---")
-            
-            st.markdown(project['description'])
-            
-            # Optional additional project details in columns if needed
-            col1, col2 = st.columns([1, 2])
-            with col1:
-                st.write("**Type:** Design Project")
-            with col2:
-                if 'details' in project:
-                    st.write(project['details'])
+col1, col2 = st.columns(2)  
+with col1:
+    st.image(pic_20, use_container_width=True) 
+with col2:
+    st.image(pic_23, use_container_width=True) 
+
+for i, project in enumerate(PROJECTS):
+    with st.expander(f"Project {i+1}: {project['title']}"):
+        st.markdown(f"### {project['title']}")
+        st.markdown("---")
+        
+        st.markdown(project['description'])
+        
+        col1, col2 = st.columns([1, 2])
+        with col1:
+            st.write("**Type:** Design Project")
+        with col2:
+            if 'details' in project:
+                st.write(project['details'])
 
 # --- FOOTER ---
 st.divider()
@@ -348,3 +367,16 @@ with footer_cols[0]:
     st.write(f"[{PHONE}](tel:{PHONE.replace(' ', '')})")
     st.write(f"[{EMAIL}](mailto:{EMAIL})")
 with footer_cols[1]:
+    st.write("🔗 Connect")
+    for platform, link in SOCIAL_MEDIA.items():
+        icon = social_icons.get(platform, "🌐")
+        st.markdown(f"<a href='{link}' target='_blank' class='footer-social-link'>{icon} {platform}</a>", unsafe_allow_html=True)
+with footer_cols[2]:
+    st.write("📄 Resources")
+    st.download_button(
+        label="📄 Download Resume",
+        data=PDFbyte,
+        file_name=resume_file.name,
+        mime="application/octet-stream",
+    )
+    st.write(f"© {NAME} | {JOB_TITLE}")
