@@ -34,7 +34,7 @@ A modern, interactive digital autobiography and portfolio showcase built using S
 
 2. Install dependencies:
    ```bash
-   pip install -r requirements.txt
+   pip install streamlit
    ```
 
 3. Run the application:
